@@ -42,7 +42,7 @@ export async function detectTrends(
     Record<string, { count: number; dates: Date[] }>
   > = {};
 
-  updates.forEach((update) => {
+  updates.forEach((update: any) => {
     const key = `${update.competitorId}-${update.type}`;
     if (!grouped[update.competitorId]) {
       grouped[update.competitorId] = {};
@@ -58,7 +58,7 @@ export async function detectTrends(
   const trends: Trend[] = [];
 
   for (const [competitorId, types] of Object.entries(grouped)) {
-    const competitor = updates.find((u) => u.competitorId === competitorId)
+    const competitor = updates.find((u: any) => u.competitorId === competitorId)
       ?.competitor;
     if (!competitor) continue;
 
