@@ -187,8 +187,9 @@ export async function getMentions(
  * Get stats - tries database first, falls back to JSON
  */
 export async function getStats(): Promise<MentionStats> {
-  if (await isDatabaseAvailable()) {
-    try {
+  try {
+    if (await isDatabaseAvailable()) {
+      try {
       const last24Hours = new Date();
       last24Hours.setHours(last24Hours.getHours() - 24);
 
@@ -237,21 +238,38 @@ export async function getStats(): Promise<MentionStats> {
         negative: negativePercent,
         deltaWeek,
       };
-    } catch (error) {
-      console.error("Error fetching stats from database:", error);
-      // Fall through to JSON fallback
+      } catch (error) {
+        console.error("Error fetching stats from database:", error);
+        // Fall through to JSON fallback
+      }
     }
+  } catch (error) {
+    console.error("Error checking database availability for stats:", error);
+    // Fall through to JSON fallback
   }
 
-  return getStatsFromJson();
+  try {
+    return await getStatsFromJson();
+  } catch (error) {
+    console.error("Error fetching stats from JSON:", error);
+    // Return default stats as last resort
+    return {
+      total: 0,
+      positive: 0,
+      neutral: 0,
+      negative: 0,
+      deltaWeek: 0,
+    };
+  }
 }
 
 /**
  * Get sentiment trend - tries database first, falls back to JSON
  */
 export async function getSentimentTrend(): Promise<SentimentSeriesPoint[]> {
-  if (await isDatabaseAvailable()) {
-    try {
+  try {
+    if (await isDatabaseAvailable()) {
+      try {
       const sevenDaysAgo = new Date();
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
@@ -290,21 +308,32 @@ export async function getSentimentTrend(): Promise<SentimentSeriesPoint[]> {
           negative: counts.total > 0 ? Math.round((counts.negative / counts.total) * 100) : 0,
         }))
         .sort((a, b) => a.timestamp.localeCompare(b.timestamp));
-    } catch (error) {
-      console.error("Error fetching sentiment trend from database:", error);
-      // Fall through to JSON fallback
+      } catch (error) {
+        console.error("Error fetching sentiment trend from database:", error);
+        // Fall through to JSON fallback
+      }
     }
+  } catch (error) {
+    console.error("Error checking database availability for sentiment trend:", error);
+    // Fall through to JSON fallback
   }
 
-  return getSentimentTrendFromJson();
+  try {
+    return await getSentimentTrendFromJson();
+  } catch (error) {
+    console.error("Error fetching sentiment trend from JSON:", error);
+    // Return empty array as last resort
+    return [];
+  }
 }
 
 /**
  * Get source breakdown - tries database first, falls back to JSON
  */
 export async function getSourceBreakdown(): Promise<SourceSplit[]> {
-  if (await isDatabaseAvailable()) {
-    try {
+  try {
+    if (await isDatabaseAvailable()) {
+      try {
       const last24Hours = new Date();
       last24Hours.setHours(last24Hours.getHours() - 24);
 
@@ -357,21 +386,32 @@ export async function getSourceBreakdown(): Promise<SourceSplit[]> {
           return { label, value, delta };
         })
         .sort((a, b) => b.value - a.value);
-    } catch (error) {
-      console.error("Error fetching source breakdown from database:", error);
-      // Fall through to JSON fallback
+      } catch (error) {
+        console.error("Error fetching source breakdown from database:", error);
+        // Fall through to JSON fallback
+      }
     }
+  } catch (error) {
+    console.error("Error checking database availability for source breakdown:", error);
+    // Fall through to JSON fallback
   }
 
-  return getSourceBreakdownFromJson();
+  try {
+    return await getSourceBreakdownFromJson();
+  } catch (error) {
+    console.error("Error fetching source breakdown from JSON:", error);
+    // Return empty array as last resort
+    return [];
+  }
 }
 
 /**
  * Get alerts - tries database first, falls back to JSON
  */
 export async function getAlerts(): Promise<AlertItem[]> {
-  if (await isDatabaseAvailable()) {
-    try {
+  try {
+    if (await isDatabaseAvailable()) {
+      try {
       const alerts = await prisma.alert.findMany({
         where: {
           resolvedAt: null,
@@ -394,12 +434,22 @@ export async function getAlerts(): Promise<AlertItem[]> {
         createdAt: alert.createdAt.toISOString(),
         actionLabel: alert.mention ? "View mention" : undefined,
       }));
-    } catch (error) {
-      console.error("Error fetching alerts from database:", error);
-      // Fall through to JSON fallback
+      } catch (error) {
+        console.error("Error fetching alerts from database:", error);
+        // Fall through to JSON fallback
+      }
     }
+  } catch (error) {
+    console.error("Error checking database availability for alerts:", error);
+    // Fall through to JSON fallback
   }
 
-  return getAlertsFromJson();
+  try {
+    return await getAlertsFromJson();
+  } catch (error) {
+    console.error("Error fetching alerts from JSON:", error);
+    // Return empty array as last resort
+    return [];
+  }
 }
 
