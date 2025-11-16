@@ -1,0 +1,290 @@
+{
+  "mentions": [
+    {
+      "id": "1",
+      "channel": "twitter",
+      "source": "Twitter",
+      "author": "Sarah Johnson",
+      "handle": "@sarahj",
+      "body": "Just tried the new product launch and I'm absolutely loving it! The user experience is fantastic. Highly recommend! 🚀",
+      "url": "https://twitter.com/sarahj/status/1234567890",
+      "publishedAt": "2024-01-15T10:30:00Z",
+      "sentiment": "positive",
+      "reach": 12500,
+      "topics": ["product launch", "user experience"],
+      "spike": false
+    },
+    {
+      "id": "2",
+      "channel": "reddit",
+      "source": "r/technology",
+      "author": "TechEnthusiast2024",
+      "body": "Has anyone else noticed the recent updates? The performance improvements are significant. Great work by the team!",
+      "url": "https://reddit.com/r/technology/comments/abc123",
+      "publishedAt": "2024-01-15T09:15:00Z",
+      "sentiment": "positive",
+      "reach": 8500,
+      "topics": ["updates", "performance"],
+      "spike": false
+    },
+    {
+      "id": "3",
+      "channel": "news",
+      "source": "TechCrunch",
+      "author": "Michael Chen",
+      "body": "The company announced a major partnership today, expanding their market reach significantly.",
+      "url": "https://techcrunch.com/article/123",
+      "publishedAt": "2024-01-15T08:00:00Z",
+      "sentiment": "neutral",
+      "reach": 45000,
+      "topics": ["partnership", "market expansion"],
+      "spike": true
+    },
+    {
+      "id": "4",
+      "channel": "twitter",
+      "source": "Twitter",
+      "author": "Alex Martinez",
+      "handle": "@alexm",
+      "body": "Having some issues with the latest update. Customer support was helpful but the bug is still there. Hope it gets fixed soon.",
+      "url": "https://twitter.com/alexm/status/1234567891",
+      "publishedAt": "2024-01-15T07:45:00Z",
+      "sentiment": "negative",
+      "reach": 3200,
+      "topics": ["bug", "customer support"],
+      "spike": false
+    },
+    {
+      "id": "5",
+      "channel": "blog",
+      "source": "Medium",
+      "author": "Jennifer Lee",
+      "body": "A comprehensive review of the platform's new features. While there are some areas for improvement, overall it's a solid update.",
+      "url": "https://medium.com/@jennifer/review-123",
+      "publishedAt": "2024-01-15T06:30:00Z",
+      "sentiment": "neutral",
+      "reach": 12000,
+      "topics": ["review", "features"],
+      "spike": false
+    },
+    {
+      "id": "6",
+      "channel": "youtube",
+      "source": "YouTube",
+      "author": "ReviewChannel",
+      "body": "In-depth analysis of the product. The design is sleek and the functionality is impressive. Definitely worth checking out!",
+      "url": "https://youtube.com/watch?v=abc123",
+      "publishedAt": "2024-01-14T20:00:00Z",
+      "sentiment": "positive",
+      "reach": 28000,
+      "topics": ["review", "design", "functionality"],
+      "spike": true
+    },
+    {
+      "id": "7",
+      "channel": "reddit",
+      "source": "r/startups",
+      "author": "StartupGuru",
+      "body": "The pricing model seems a bit high compared to competitors. Would love to see more flexible options.",
+      "url": "https://reddit.com/r/startups/comments/def456",
+      "publishedAt": "2024-01-14T18:30:00Z",
+      "sentiment": "negative",
+      "reach": 5600,
+      "topics": ["pricing", "competition"],
+      "spike": false
+    },
+    {
+      "id": "8",
+      "channel": "twitter",
+      "source": "Twitter",
+      "author": "David Kim",
+      "handle": "@davidk",
+      "body": "The new dashboard is amazing! So much cleaner and easier to navigate. Great job team! 👏",
+      "url": "https://twitter.com/davidk/status/1234567892",
+      "publishedAt": "2024-01-14T16:15:00Z",
+      "sentiment": "positive",
+      "reach": 8900,
+      "topics": ["dashboard", "ui/ux"],
+      "spike": false
+    },
+    {
+      "id": "9",
+      "channel": "forums",
+      "source": "ProductHunt",
+      "author": "HuntMaster",
+      "body": "Interesting product concept. The execution looks promising but needs more polish in certain areas.",
+      "url": "https://producthunt.com/posts/product-123",
+      "publishedAt": "2024-01-14T14:00:00Z",
+      "sentiment": "neutral",
+      "reach": 15000,
+      "topics": ["product concept", "execution"],
+      "spike": false
+    },
+    {
+      "id": "10",
+      "channel": "news",
+      "source": "The Verge",
+      "author": "Emily Rodriguez",
+      "body": "Breaking: Major security update released addressing recent vulnerabilities. Users are advised to update immediately.",
+      "url": "https://theverge.com/2024/01/14/security-update",
+      "publishedAt": "2024-01-14T12:00:00Z",
+      "sentiment": "neutral",
+      "reach": 67000,
+      "topics": ["security", "update"],
+      "spike": true
+    },
+    {
+      "id": "11",
+      "channel": "twitter",
+      "source": "Twitter",
+      "author": "Ryan Patel",
+      "handle": "@ryanp",
+      "body": "Customer service response time has been terrible lately. Used to be great, but now it takes days to get a reply.",
+      "url": "https://twitter.com/ryanp/status/1234567893",
+      "publishedAt": "2024-01-14T10:30:00Z",
+      "sentiment": "negative",
+      "reach": 4200,
+      "topics": ["customer service", "response time"],
+      "spike": false
+    },
+    {
+      "id": "12",
+      "channel": "blog",
+      "source": "Dev.to",
+      "author": "CodeMaster",
+      "body": "Tutorial: How to integrate the new API. The documentation is clear and the examples are helpful. Well done!",
+      "url": "https://dev.to/codemaster/tutorial-123",
+      "publishedAt": "2024-01-14T08:00:00Z",
+      "sentiment": "positive",
+      "reach": 18000,
+      "topics": ["tutorial", "api", "documentation"],
+      "spike": false
+    },
+    {
+      "id": "13",
+      "channel": "youtube",
+      "source": "YouTube",
+      "author": "TechReviewer",
+      "body": "Unboxing and first impressions. The build quality is excellent and the packaging is well thought out.",
+      "url": "https://youtube.com/watch?v=def456",
+      "publishedAt": "2024-01-13T22:00:00Z",
+      "sentiment": "positive",
+      "reach": 35000,
+      "topics": ["unboxing", "build quality"],
+      "spike": false
+    },
+    {
+      "id": "14",
+      "channel": "reddit",
+      "source": "r/webdev",
+      "author": "WebDevPro",
+      "body": "The new framework integration is causing some compatibility issues with older projects. Hope they release a fix soon.",
+      "url": "https://reddit.com/r/webdev/comments/ghi789",
+      "publishedAt": "2024-01-13T20:00:00Z",
+      "sentiment": "negative",
+      "reach": 7200,
+      "topics": ["framework", "compatibility"],
+      "spike": false
+    },
+    {
+      "id": "15",
+      "channel": "twitter",
+      "source": "Twitter",
+      "author": "Lisa Wang",
+      "handle": "@lisaw",
+      "body": "The mobile app update is fantastic! Much faster and smoother. Love the new dark mode option too!",
+      "url": "https://twitter.com/lisaw/status/1234567894",
+      "publishedAt": "2024-01-13T18:00:00Z",
+      "sentiment": "positive",
+      "reach": 11200,
+      "topics": ["mobile app", "dark mode"],
+      "spike": false
+    }
+  ],
+  "stats": {
+    "total": 15,
+    "positive": 47,
+    "neutral": 33,
+    "negative": 20,
+    "deltaWeek": 25
+  },
+  "sentimentTrend": [
+    {
+      "timestamp": "2024-01-13",
+      "positive": 50,
+      "neutral": 30,
+      "negative": 20
+    },
+    {
+      "timestamp": "2024-01-14",
+      "positive": 45,
+      "neutral": 35,
+      "negative": 20
+    },
+    {
+      "timestamp": "2024-01-15",
+      "positive": 47,
+      "neutral": 33,
+      "negative": 20
+    }
+  ],
+  "sourceBreakdown": [
+    {
+      "label": "Twitter",
+      "value": 30,
+      "delta": 5
+    },
+    {
+      "label": "YouTube",
+      "value": 25,
+      "delta": 10
+    },
+    {
+      "label": "News",
+      "value": 20,
+      "delta": -2
+    },
+    {
+      "label": "Reddit",
+      "value": 15,
+      "delta": 3
+    },
+    {
+      "label": "Blog",
+      "value": 7,
+      "delta": 1
+    },
+    {
+      "label": "Forums",
+      "value": 3,
+      "delta": -1
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alert-1",
+      "severity": "high",
+      "title": "Negative Sentiment Spike Detected",
+      "description": "Multiple negative mentions detected in the last hour, primarily related to customer service issues.",
+      "createdAt": "2024-01-15T08:00:00Z",
+      "actionLabel": "View mention"
+    },
+    {
+      "id": "alert-2",
+      "severity": "medium",
+      "title": "High Reach Mention",
+      "description": "A news article with 67,000 reach mentions security updates. Monitor for follow-up coverage.",
+      "createdAt": "2024-01-14T12:00:00Z",
+      "actionLabel": "View mention"
+    },
+    {
+      "id": "alert-3",
+      "severity": "low",
+      "title": "Trending Topic Alert",
+      "description": "Product launch topic is gaining traction across multiple channels.",
+      "createdAt": "2024-01-15T10:30:00Z",
+      "actionLabel": "View mention"
+    }
+  ]
+}
+

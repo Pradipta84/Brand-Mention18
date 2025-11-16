@@ -87,7 +87,7 @@ export function NotificationDropdown({ onClose }: NotificationDropdownProps) {
     return (
       <div
         ref={dropdownRef}
-        className="absolute right-0 top-12 z-50 w-96 rounded-xl border border-slate-200 bg-white shadow-xl"
+        className="absolute right-0 top-12 z-[9999] w-96 rounded-xl border border-slate-200 bg-white shadow-2xl"
       >
         <div className="p-6 text-center text-sm text-slate-500">
           Loading notifications...
@@ -99,7 +99,7 @@ export function NotificationDropdown({ onClose }: NotificationDropdownProps) {
   return (
     <div
       ref={dropdownRef}
-      className="absolute right-0 top-12 z-50 w-96 rounded-xl border border-slate-200 bg-white shadow-xl"
+      className="absolute right-0 top-12 z-[9999] w-96 rounded-xl border border-slate-200 bg-white shadow-2xl"
     >
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3">
