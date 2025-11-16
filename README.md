@@ -349,12 +349,16 @@ npm run ingest:document
    - Connect your GitHub repo to Vercel
    - **⚠️ CRITICAL: Add Environment Variables:**
      - Go to **Settings → Environment Variables**
-     - Add `DATABASE_URL` with your PostgreSQL connection string
-       - Format: `postgresql://user:password@host:port/database?schema=public`
-       - **Free options:** Vercel Postgres, Supabase, Neon, Railway
+     - Add `DATABASE_URL`:
+       - **Option 1 (Real Database):** Use your PostgreSQL connection string
+         - Format: `postgresql://user:password@host:port/database?schema=public`
+         - **Free options:** Vercel Postgres, Supabase, Neon, Railway
+       - **Option 2 (Demo/No Database):** Use dummy value for build
+         - Value: `postgresql://dummy:dummy@localhost:5432/dummy?schema=public`
+         - App will automatically use static JSON data fallback
      - Add `OPENAI_API_KEY` (Optional) for enhanced sentiment analysis
      - **Select ALL environments** (Production, Preview, Development)
-   - Deploy! (Migrations run automatically during build)
+   - Deploy! (Migrations run automatically during build if database is available)
 
 3. **PostgreSQL Database Options:**
    - **Vercel Postgres** (Recommended - easiest integration)
@@ -416,15 +420,16 @@ Add to `package.json` or Vercel settings:
 2. **OpenAI with Fallback** – Sentiment analysis uses OpenAI when available, falls back to keyword matching
 3. **Spike Detection** – Compares last hour to 23-hour average, triggers alerts at 3x threshold
 4. **Topic Extraction** – Keyword-based topic matching (can be enhanced with NLP)
-5. **Database-First** – All data flows through PostgreSQL for consistency
+5. **Hybrid Data System** – Tries PostgreSQL database first, automatically falls back to static JSON data if database is unavailable (works for demos and deployments without database)
 
 ### 📝 Notes
 
 - All dashboards use Next.js server components for direct database access (better performance)
+- **Hybrid Data System:** The app automatically uses PostgreSQL when available, and falls back to static JSON data (`data/mentions-data.json`) when the database is unavailable. This allows the app to work for demos and deployments without requiring a database connection.
 - API routes are available for external integrations or future client-side features
 - Sentiment analysis works without OpenAI API key (uses keyword matching)
 - Spike detection runs asynchronously after each ingestion
-- All challenges share a unified PostgreSQL database with Prisma ORM
+- All challenges share a unified PostgreSQL database with Prisma ORM (when database is available)
 - CSV export functionality available for mentions data
 - Auto-classification works across all challenges (sentiment, topics, tags, categories)
 
@@ -434,14 +439,4 @@ This is a hackathon submission. For questions or improvements, please open an is
 
 ---
 
-**Built for RapidQuest Hiring Hackathon (Nov 14-16, 2025)**
-"# Brand-Mention1" 
-"# Brand-Mention1" 
-"# Brand-Mention1" 
-"# Brand-Mention12" 
-"# Brand-Mention12" 
-"# Brand-Mention12" 
-"# Brand-Mention18" 
-"# Brand-Mention18" 
-"# Brand-Mention18" 
-"# Brand-Mention18" 
+**Built for RapidQuest Hiring Hackathon (Nov 14-16, 2025)** 
