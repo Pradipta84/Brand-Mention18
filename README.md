@@ -122,9 +122,11 @@ brand-watch/
 2. **Set up environment variables:**
    Create a `.env` file in the project root:
    ```env
-   DATABASE_URL="postgresql://postgres:postgres@localhost:5432/brand_watch?schema=public"
+   DATABASE_URL="postgresql://postgres:1826@localhost:5432/brand_watch?schema=public"
    OPENAI_API_KEY="sk-..." # Optional, falls back to keyword analysis if not provided
    ```
+   
+   **Note:** Replace `postgres` (username), `localhost:5432` (host:port), and `brand_watch` (database name) with your actual PostgreSQL values. The password `1826` is shown as an example.
 
 3. **Set up the database:**
    ```bash
@@ -345,14 +347,22 @@ npm run ingest:document
 
 2. **Deploy to Vercel:**
    - Connect your GitHub repo to Vercel
-   - Add environment variables:
-     - `DATABASE_URL` – Your PostgreSQL connection string
-     - `OPENAI_API_KEY` – (Optional) Your OpenAI API key
-   - Deploy!
+   - **⚠️ CRITICAL: Add Environment Variables:**
+     - Go to **Settings → Environment Variables**
+     - Add `DATABASE_URL` with your PostgreSQL connection string
+       - Format: `postgresql://user:password@host:port/database?schema=public`
+       - **Free options:** Vercel Postgres, Supabase, Neon, Railway
+     - Add `OPENAI_API_KEY` (Optional) for enhanced sentiment analysis
+     - **Select ALL environments** (Production, Preview, Development)
+   - Deploy! (Migrations run automatically during build)
 
-3. **Set up PostgreSQL:**
-   - Use Vercel Postgres, Supabase, or Neon for managed PostgreSQL
-   - Run migrations: `npx prisma migrate deploy` (or use Vercel's build command)
+3. **PostgreSQL Database Options:**
+   - **Vercel Postgres** (Recommended - easiest integration)
+   - **Supabase** (Free tier: https://supabase.com)
+   - **Neon** (Free tier: https://neon.tech)
+   - **Railway** (Free tier: https://railway.app)
+   
+   See `VERCEL_DEPLOYMENT.md` for detailed setup instructions.
 
 #### Build Command for Vercel
 Add to `package.json` or Vercel settings:
