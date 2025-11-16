@@ -2,11 +2,17 @@ import { NextResponse } from "next/server";
 import { updateQueryStatus } from "@/lib/query/processor";
 import { QueryStatus } from "@/generated/prisma/client";
 
+// Helper to resolve params (handles both sync and async)
+async function resolveParams(params: Promise<{ id: string }> | { id: string }): Promise<{ id: string }> {
+  return await Promise.resolve(params);
+}
+
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> | { id: string } }
 ) {
   try {
+    const { id } = await resolveParams(params);
     const body = await request.json();
     const { status, userId, notes } = body;
 
@@ -34,7 +40,7 @@ export async function POST(
       );
     }
 
-    await updateQueryStatus(params.id, queryStatus, userId, notes);
+    await updateQueryStatus(id, queryStatus, userId, notes);
 
     return NextResponse.json({ success: true });
   } catch (error) {

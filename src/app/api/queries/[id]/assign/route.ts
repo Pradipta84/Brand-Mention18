@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
 import { assignQuery } from "@/lib/query/processor";
 
+// Helper to resolve params (handles both sync and async)
+async function resolveParams(params: Promise<{ id: string }> | { id: string }): Promise<{ id: string }> {
+  return await Promise.resolve(params);
+}
+
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> | { id: string } }
 ) {
   try {
+    const { id } = await resolveParams(params);
     const body = await request.json();
     const { assigneeId, notes } = body;
 
@@ -16,7 +22,7 @@ export async function POST(
       );
     }
 
-    await assignQuery(params.id, assigneeId, notes);
+    await assignQuery(id, assigneeId, notes);
 
     return NextResponse.json({ success: true });
   } catch (error) {

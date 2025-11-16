@@ -2,11 +2,17 @@ import { NextResponse } from "next/server";
 import { updateQueryPriority } from "@/lib/query/processor";
 import { QueryPriority } from "@/generated/prisma/client";
 
+// Helper to resolve params (handles both sync and async)
+async function resolveParams(params: Promise<{ id: string }> | { id: string }): Promise<{ id: string }> {
+  return await Promise.resolve(params);
+}
+
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> | { id: string } }
 ) {
   try {
+    const { id } = await resolveParams(params);
     const body = await request.json();
     const { priority, userId, notes } = body;
 
@@ -32,7 +38,7 @@ export async function POST(
       );
     }
 
-    await updateQueryPriority(params.id, queryPriority, userId, notes);
+    await updateQueryPriority(id, queryPriority, userId, notes);
 
     return NextResponse.json({ success: true });
   } catch (error) {
