@@ -25,14 +25,35 @@ async function loadJsonData(): Promise<JsonData> {
   }
 
   try {
-    // In production (Vercel), use process.cwd()
-    // In development, the path might be different
-    const dataPath = path.join(process.cwd(), "data", "mentions-data.json");
-    const fileContents = await fs.readFile(dataPath, "utf8");
-    cachedData = JSON.parse(fileContents);
-    return cachedData!;
+    // Try multiple possible paths for Vercel/serverless environments
+    const possiblePaths = [
+      path.join(process.cwd(), "data", "mentions-data.json"),
+      path.join(process.cwd(), "..", "data", "mentions-data.json"),
+    ];
+
+    let fileContents: string | null = null;
+    let lastError: Error | null = null;
+
+    for (const dataPath of possiblePaths) {
+      try {
+        fileContents = await fs.readFile(dataPath, "utf8");
+        console.log(`Successfully loaded JSON from: ${dataPath}`);
+        break;
+      } catch (err) {
+        lastError = err as Error;
+        // Try next path
+      }
+    }
+
+    if (fileContents) {
+      cachedData = JSON.parse(fileContents);
+      return cachedData!;
+    } else {
+      throw lastError || new Error("Could not find mentions-data.json in any expected location");
+    }
   } catch (error) {
     console.error("Error loading JSON data:", error);
+    console.error("Current working directory:", process.cwd());
     // Return empty data structure if file can't be loaded
     return {
       mentions: [],

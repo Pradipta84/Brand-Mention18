@@ -55,8 +55,9 @@ async function isDatabaseAvailable(): Promise<boolean> {
   try {
     await prisma.$queryRaw`SELECT 1`;
     return true;
-  } catch (error) {
-    console.log("Database not available, using JSON fallback");
+  } catch (err: any) {
+    // Catch any errors (connection, query, etc.)
+    console.log("Database not available, using JSON fallback:", err?.message || "Unknown error");
     return false;
   }
 }
@@ -75,8 +76,9 @@ export async function getMentions(
   }
 ): Promise<Mention[]> {
   // Try database first
-  if (await isDatabaseAvailable()) {
-    try {
+  try {
+    if (await isDatabaseAvailable()) {
+      try {
       const where: any = {};
 
       // Text search in body, author, or handle
@@ -161,14 +163,24 @@ export async function getMentions(
         topics: mention.topics.map((mt) => mt.topic.label),
         spike: mention.spike,
       }));
-    } catch (error) {
-      console.error("Error fetching mentions from database:", error);
-      // Fall through to JSON fallback
+      } catch (error) {
+        console.error("Error fetching mentions from database:", error);
+        // Fall through to JSON fallback
+      }
     }
+  } catch (error) {
+    console.error("Error checking database availability:", error);
+    // Fall through to JSON fallback
   }
 
   // Fallback to JSON
-  return getMentionsFromJson(limit, filters);
+  try {
+    return await getMentionsFromJson(limit, filters);
+  } catch (error) {
+    console.error("Error fetching mentions from JSON:", error);
+    // Return empty array as last resort
+    return [];
+  }
 }
 
 /**
